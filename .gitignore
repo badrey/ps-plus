@@ -1,0 +1,21 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+# expo
+.expo/
+.idea/
+
+# dependencies
+**/node_modules
+
+# misc
+*.log
+
+# build artifacts
+**/*.jks
+**/*.jar
+**/*.aab
+**/*.apks
+**/*.apk
+**/*.mov
+**/*.ipa
+**/*.mp4
+**/.DS_Store

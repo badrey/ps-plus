@@ -1,0 +1,55 @@
+{
+  "expo": {
+    "name": "PS Plus",
+    "slug": "ps-plus",
+    "privacy": "unlisted",
+    "version": "0.0.1",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "primaryColor": "#778899",
+    "orientation": "portrait",
+    "scheme": "ps-plus",
+    "ios": {
+      "bundleIdentifier": "com.abadaev.PSPlus",
+      "buildNumber": "0.0.1",
+      "supportsTablet": false
+    },
+    "androidNavigationBar": {
+      "barStyle": "dark-content",
+      "backgroundColor": "#FBFBFB"
+    },
+    "android": {
+      "package": "com.abadaev.PSPlus",
+      "versionCode": 1,
+      "permissions": [
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_PHONE_STATE",
+        "WRITE_SETTINGS",
+        "VIBRATE",
+        "WAKE_LOCK",
+        "com.anddoes.launcher.permission.UPDATE_COUNT",
+        "com.android.launcher.permission.INSTALL_SHORTCUT",
+        "com.google.android.c2dm.permission.RECEIVE",
+        "com.google.android.gms.permission.ACTIVITY_RECOGNITION",
+        "com.google.android.providers.gsf.permission.READ_GSERVICES",
+        "com.htc.launcher.permission.READ_SETTINGS",
+        "com.htc.launcher.permission.UPDATE_SHORTCUT",
+        "com.majeur.launcher.permission.UPDATE_BADGE",
+        "com.sec.android.provider.badge.permission.READ",
+        "com.sec.android.provider.badge.permission.WRITE",
+        "com.sonyericsson.home.permission.BROADCAST_BADGE"
+      ]
+    },
+    "assetBundlePatterns": [
+      "./resources/icons/*",
+      "./resources/icons/icons/*",
+      "./resources/icons/icons/fonts/*"
+    ],
+    "updates": {
+      "enabled": false
+    }
+  }
+}
