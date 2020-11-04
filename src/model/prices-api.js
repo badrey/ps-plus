@@ -1,37 +1,50 @@
 /* @flow */
 /* eslint-disable no-param-reassign */
-/* eslint-disable camelcase */
 import {isEqual} from "../common/utils/testUtils";
-import type {DisplayPrice, PriceInfo, RODisplayPrice, ROPriceInfo} from "./types";
 import type {
-    LegacyTitleInfo,
-    ResponseItem,
-    Reward,
-    SkuPrice,
-    TitleInfo,
-} from "../api/store-api-types";
+    DisplayPrice,
+    FreePrice,
+    PriceInfo,
+    RawPriceInfo,
+    RODisplayPrice,
+    ROPriceInfo,
+} from "./types";
+import type {ResponseItem, SkuPrice, TitleInfo} from "../api/store-api-types";
 
-function normalisePriceInfo(priceInfo: PriceInfo) {
+function normalisePriceInfo(priceInfo: RawPriceInfo): ?ROPriceInfo {
+    if (!priceInfo) {
+        return null;
+    }
     if (!priceInfo.plusPrice) {
-        priceInfo.plusPrice = priceInfo?.nonPlusPrice;
-    } else if (!priceInfo?.nonPlusPrice) {
-        priceInfo.nonPlusPrice = priceInfo?.plusPrice;
+        priceInfo.plusPrice = priceInfo.nonPlusPrice;
+    } else if (!priceInfo.nonPlusPrice) {
+        priceInfo.nonPlusPrice = priceInfo.plusPrice;
     }
 
-    if (priceInfo?.freePrice) {
-        if (priceInfo?.nonPlusPrice) {
-            priceInfo.freePrice = null;
-        } else {
-            priceInfo.nonPlusPrice = getDefaultDisplayPrice();
-            priceInfo.plusPrice = getDefaultDisplayPrice();
+    if (priceInfo.freePrice) {
+        if (priceInfo.nonPlusPrice) {
+            return {
+                freePrice: null,
+                nonPlusPrice: priceInfo.nonPlusPrice,
+                plusPrice: priceInfo.plusPrice ?? priceInfo.nonPlusPrice,
+            };
         }
+        return {
+            freePrice: priceInfo.freePrice,
+            nonPlusPrice: priceInfo.nonPlusPrice ?? getDefaultDisplayPrice(),
+            plusPrice: priceInfo.plusPrice ?? getDefaultDisplayPrice(),
+        };
     }
 
-    if (!priceInfo?.nonPlusPrice) {
+    if (!priceInfo.nonPlusPrice && !priceInfo.plusPrice) {
         return null;
     }
 
-    return priceInfo;
+    return {
+        freePrice: priceInfo.freePrice,
+        nonPlusPrice: priceInfo.nonPlusPrice ?? getDefaultDisplayPrice(),
+        plusPrice: priceInfo.plusPrice ?? getDefaultDisplayPrice(),
+    };
 }
 
 function skuPriceToFreePrice(skuPrice: SkuPrice) {
@@ -60,12 +73,16 @@ function skuPriceToDisplayPrice(skuPrice: SkuPrice): RODisplayPrice {
     return displayPrice;
 }
 
-export function extractPriceInfo(responseItem: ResponseItem<TitleInfo>): ROPriceInfo {
+export function extractPriceInfo(responseItem: ResponseItem<TitleInfo>): ?ROPriceInfo {
     const skus = responseItem?.attributes?.skus;
     if (!skus?.length) {
         return null;
     }
-    const priceInfo = {};
+    const priceInfo: RawPriceInfo = {
+        freePrice: null,
+        plusPrice: null,
+        nonPlusPrice: null,
+    };
     skus.forEach((sku) => {
         priceInfo.freePrice = skuPriceToFreePrice(sku.prices["non-plus-user"]);
         if (!priceInfo.freePrice) {
@@ -85,83 +102,6 @@ export function extractPriceInfo(responseItem: ResponseItem<TitleInfo>): ROPrice
                     0)
             ) {
                 priceInfo.plusPrice = plusPrice;
-            }
-        }
-    });
-
-    return normalisePriceInfo(priceInfo);
-}
-
-function rewardToFreePrice({
-    reward,
-    originalPrice,
-}: {
-    originalPrice?: number,
-    reward?: Reward,
-}) {
-    if (reward) {
-        if (reward.price === 0) {
-            return {
-                displayName: reward.display_price,
-                isPlus: reward.isPlus,
-            };
-        }
-    } else if (originalPrice === 0) {
-        return {
-            displayName: "",
-            isPlus: false,
-        };
-    }
-    return null;
-}
-
-function rewardToDisplayPrice({
-    reward,
-    originalDisplay,
-    originalPrice,
-}: {
-    originalDisplay: string,
-    originalPrice: number,
-    reward?: Reward,
-}): RODisplayPrice {
-    const displayPrice: DisplayPrice = getDefaultDisplayPrice();
-    if (reward) {
-        displayPrice.discountPercentage = reward.discount;
-        displayPrice.actualValue = reward.price;
-        displayPrice.actualDisplay = reward.display_price;
-        displayPrice.availability.startDate = reward.start_date;
-        displayPrice.availability.endDate = reward.end_date;
-        displayPrice.originalDisplay = originalDisplay;
-        displayPrice.originalValue = originalPrice;
-    } else {
-        displayPrice.actualValue = originalPrice;
-        displayPrice.actualDisplay = originalDisplay;
-    }
-
-    return displayPrice;
-}
-
-export function extractLegacyPriceInfo(
-    responseItem: ResponseItem<LegacyTitleInfo>
-): ROPriceInfo {
-    const {display_price, price, rewards = []} = responseItem?.attributes ?? {};
-    if (!display_price) {
-        return null;
-    }
-    const priceInfo = {};
-    rewards.forEach((reward) => {
-        const isPlus = !!reward?.isPlus;
-        priceInfo.freePrice = rewardToFreePrice({reward, originalPrice: price});
-        if (!priceInfo.freePrice) {
-            const displayPrice = rewardToDisplayPrice({
-                reward,
-                originalDisplay: display_price,
-                originalPrice: price,
-            });
-            if (isPlus) {
-                priceInfo.plusPrice = displayPrice;
-            } else {
-                priceInfo.nonPlusPrice = displayPrice;
             }
         }
     });

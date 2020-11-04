@@ -10,10 +10,10 @@ import type {
 } from "../../../contexts/ScenesContext/types";
 import {StatusBar} from "./StatusBar";
 import type {NavigationProps} from "../../types";
-import {prepareScene} from "../hocs/prepareScene";
 import {SearchPSPlusSceneContext} from "../../../contexts/ScenesContext/ContainersSceneContexts";
 import {AppHeader} from "../../AppHeader/AppHeader";
 import {SearchScreen} from "../SearchScreen";
+import {useIsFocused} from "@react-navigation/native";
 
 type Props = {
     ...NavigationProps,
@@ -101,4 +101,17 @@ class SearchListScene extends SearchSceneBase<
     }
 }
 
-export const SearchPSPlusScene = prepareScene(SearchListScene, SearchPSPlusSceneContext);
+export const SearchPSPlusScene = React.memo<NavigationProps>(
+    (navigationProps: NavigationProps) => {
+        const context = React.useContext(SearchPSPlusSceneContext);
+        const isFocused = useIsFocused();
+
+        return (
+            <SearchListScene
+                {...navigationProps}
+                context={context}
+                isFocused={isFocused}
+            />
+        );
+    }
+);

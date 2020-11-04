@@ -27,12 +27,11 @@ class TitlePriceSection extends React.PureComponent<TitlePriceSectionProps> {
     }
 
     render() {
-        const {
-            title: {priceInfo},
-        } = this.props;
-        if (!priceInfo) {
+        const {title} = this.props;
+        if (!title?.priceInfo) {
             return null;
         }
+        const {priceInfo} = title;
 
         const priceDates = priceInfo && this.extractPriceDates(priceInfo);
         return (

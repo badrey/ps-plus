@@ -23,11 +23,10 @@ export type Title = {|
     +name: string,
     +needsDataFetch?: boolean,
     +platforms: $ReadOnlyArray<string>,
-    +priceInfo?: ROPriceInfo,
+    +priceInfo?: ?ROPriceInfo,
     +providerName: string,
     +releaseDate: string,
     +secondaryClassification: string,
-    +skuPrice?: SkuPrice,
     +starRating: TitleRating,
     +subtitleLanguageCodes: $ReadOnlyArray<LanguageCodesType>,
     +tertiaryClassification: string,
@@ -36,8 +35,14 @@ export type Title = {|
     +voiceLanguageCodes: $ReadOnlyArray<LanguageCodesType>,
 |};
 
+export type RawPriceInfo = {
+    freePrice: ?FreePrice,
+    nonPlusPrice: ?RODisplayPrice,
+    plusPrice: ?RODisplayPrice,
+};
+
 export type PriceInfo = {
-    freePrice?: FreePrice,
+    freePrice: ?FreePrice,
     nonPlusPrice: RODisplayPrice,
     plusPrice: RODisplayPrice,
 };

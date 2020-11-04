@@ -28,7 +28,7 @@ class TitleInfoSection extends React.PureComponent<TitleMainInfoProps> {
                 <Text ellipsizeMode="tail" numberOfLines={2} style={styles.platformsText}>
                     {!!contentType && contentType}
                     {!!releaseDate && ` | ${lDate(releaseDate)}`}
-                    {platforms?.length && ` | ${platforms}`}
+                    {platforms?.length && ` | ${platforms.toString()}`}
                 </Text>
             </>
         );

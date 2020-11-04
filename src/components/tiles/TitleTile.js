@@ -18,7 +18,7 @@ export const TitleTile = React.memo<Props>((props: Props) => {
         props.onTitleSelected(props.title);
     }, [props]);
 
-    const {name, platforms, priceInfo, skuPrice} = title;
+    const {name, platforms, priceInfo} = title;
     return (
         <View style={styles.container}>
             <View style={styles.heartContainer}>

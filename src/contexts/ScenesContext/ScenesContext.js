@@ -8,7 +8,7 @@ import {logError} from "../../common/utils";
 
 type Props = {
     +children: React$Node,
-    +getContainerId?: (string) => string,
+    +getContainerId?: () => string,
     +preloadDataAsync?: () => Promise<void>,
     +scenesContext: React$Context<ScenesContextType>,
 };

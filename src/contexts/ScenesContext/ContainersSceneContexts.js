@@ -7,7 +7,7 @@ import type {ChildrenType, ScenesContextType} from "./types";
 
 type Props = {
     context: React$Context<ScenesContextType>,
-    getContainerId: (string) => string,
+    getContainerId: () => string,
     ...ChildrenType,
 };
 

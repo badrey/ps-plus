@@ -3,6 +3,7 @@ import {logError} from "../common/utils";
 import {NotFoundError} from "../common/types/errors";
 // $FlowFixMe
 import storeData from "../localResources/storeData.json";
+// $FlowFixMe
 import regionData from "../localResources/regionData.json";
 import type {FacetedSearchResponse} from "./store-api-types";
 
@@ -11,7 +12,7 @@ const valkyrieApiBase = "https://store.playstation.com/valkyrie-api";
 
 const storeLocale = "en-US";
 
-export function getLocaleData(locale, key) {
+export function getLocaleData(locale: string, key: string) {
     const localeData = storeData[locale];
     if (localeData) {
         return localeData[key];
@@ -19,7 +20,7 @@ export function getLocaleData(locale, key) {
     return null;
 }
 
-export function getRegionData(locale, key) {
+export function getRegionData(locale: string, key: string) {
     const localeData = getLocaleData(locale, key);
     if (!!localeData) {
         return localeData;
@@ -32,7 +33,7 @@ export function getRegionData(locale, key) {
             return data[key];
         }
     }
-    return null;
+    return "";
 }
 
 export function getLocalisationLocale(locale: string = storeLocale) {
@@ -74,14 +75,11 @@ function search<T>(searchUrl: string, toLogError: boolean): Promise<T> {
             if (response.status === 404) {
                 throw new NotFoundError(searchUrl);
             }
-            logError(
-                `${response.url}, ${response.status}, ${response.statusText}`,
-                toLogError
-            );
+            logError(`${response.url}, ${response.status}, ${response.statusText}`);
             throw new Error(response);
         },
         (error) => {
-            logError(error, toLogError);
+            logError(error);
             throw error;
         }
     );
@@ -89,7 +87,6 @@ function search<T>(searchUrl: string, toLogError: boolean): Promise<T> {
 
 const EMPTY_CONTAINER_SEARCH_RESPONSE: FacetedSearchResponse = {
     included: [],
-    data: {relationships: {}},
 };
 export function containerSearch(
     containerId: string,

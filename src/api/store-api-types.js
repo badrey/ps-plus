@@ -57,28 +57,13 @@ export type TitleInfo = {
     +"subtitle-language-codes": $ReadOnlyArray<LanguageCodesType>,
     +"tertiary-classification": string,
     +"thumbnail-url-base": string,
+    +"top-category"?: string,
     +"total-results": number,
     +"voice-language-codes": $ReadOnlyArray<LanguageCodesType>,
     +genres: $ReadOnlyArray<string>,
     +name: string,
     +platforms: $ReadOnlyArray<string>,
     +skus: $ReadOnlyArray<Sku>,
-};
-
-export type LegacyTitleInfo = {
-    display_price: string,
-    price: number,
-    rewards?: $ReadOnlyArray<Reward>,
-};
-
-export type Reward = {
-    discount: number,
-    display_price: string,
-    end_date: string,
-    id: string,
-    isPlus: boolean,
-    price: 6800,
-    start_date: string,
 };
 
 export type TitleFileSize = {

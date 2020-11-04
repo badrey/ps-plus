@@ -18,7 +18,7 @@ type IconButtonProps = {
     +textStyle?: StyleSheet.Styles,
 };
 
-class IconButton extends React.PureComponent<IconButtonProps> {
+export class IconButton extends React.PureComponent<IconButtonProps> {
     render() {
         const {
             animated,
@@ -76,5 +76,3 @@ class IconButton extends React.PureComponent<IconButtonProps> {
         );
     }
 }
-
-export {IconButton};
