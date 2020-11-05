@@ -1,5 +1,3 @@
-/* @flow */
-
 const OFF = 0;
 const WARN = 1;
 const ERROR = 2;
@@ -18,14 +16,7 @@ module.exports = {
         by: true,
         Response: true,
     },
-    extends: [
-        "@react-native-community",
-        "airbnb",
-        "plugin:flowtype/recommended",
-        "prettier",
-        "prettier/flowtype",
-        "prettier/react",
-    ],
+    extends: ["@react-native-community", "airbnb", "prettier", "prettier/react"],
     parserOptions: {
         ecmaFeatures: {
             impliedStrict: true,
@@ -34,7 +25,7 @@ module.exports = {
         ecmaVersion: 2018,
         sourceType: "module",
     },
-    plugins: ["flowtype", "prettier", "react", "react-native-a11y", "unicorn"],
+    plugins: ["prettier", "react", "react-native-a11y", "unicorn"],
     rules: {
         "no-unused-vars": OFF,
         "no-use-before-define": OFF,
@@ -60,22 +51,6 @@ module.exports = {
         "prefer-promise-reject-errors": OFF,
         radix: WARN,
         "sort-imports": OFF,
-
-        // eslint-plugin-flowtype
-        "flowtype/delimiter-dangle": [OFF, "always-multiline"],
-        "flowtype/no-dupe-keys": ERROR,
-        "flowtype/no-types-missing-file-annotation": ERROR,
-        "flowtype/no-weak-types": OFF,
-        "flowtype/require-parameter-type": OFF,
-        "flowtype/require-valid-file-annotation": [
-            WARN,
-            "always",
-            {
-                annotationStyle: "block",
-            },
-        ],
-        "flowtype/semi": OFF,
-        "flowtype/sort-keys": ERROR,
 
         // eslint-plugin-import
         "import/first": OFF,
