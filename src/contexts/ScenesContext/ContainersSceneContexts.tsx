@@ -3,6 +3,7 @@ import {defaultScenesContext, ScenesContextProvider} from "./ScenesContext";
 import {preloadDataAsync} from "./ps5/utils";
 import {getPSPlusContainerId} from "../../api";
 import {ChildrenType, ScenesContextType} from "./types";
+import {AccountInfoContext} from "../Account/AccountContext";
 
 type Props = ChildrenType & {
     context: React.Context<ScenesContextType>;
@@ -11,13 +12,14 @@ type Props = ChildrenType & {
 
 const SearchContainerSceneContextProvider = React.memo<Props>((props: Props) => {
     const {children, getContainerId, context} = props;
+    const {storeLocale} = React.useContext(AccountInfoContext);
     return (
         <ScenesContextProvider
             children={children}
             getContainerId={getContainerId}
             preloadDataAsync={preloadDataAsync}
             scenesContext={context}
-            storeLocale="en-US"
+            storeLocale={storeLocale}
         />
     );
 });

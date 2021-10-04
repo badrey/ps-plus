@@ -1,8 +1,21 @@
 import {normalizeSize} from "./common/utils/utils";
 import Constants from "expo-constants";
+import firebase from "firebase/app";
 import {Dimensions, NativeModules, Platform, StyleSheet} from "react-native";
 import {enableScreens} from "react-native-screens";
 import {windowHeight, windowWidth} from "./common/utils/golden-ratio";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyA6dE2jAfnpnt8jsr7heOmSD5Kvsft8EfQ",
+    authDomain: "ps-plus-e136b.firebaseapp.com",
+    databaseURL: "https://ps-plus-e136b-default-rtdb.firebaseio.com",
+    projectId: "ps-plus-e136b",
+    messagingSenderId: "735043970743",
+    appId: "1:735043970743:web:07bc0dc499e0c2b7d90f32",
+};
+// Initialize Firebase
+export const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 export const isAndroid = Platform.OS === "android";
 
