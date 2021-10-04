@@ -70,6 +70,14 @@ class ColorsService {
     set backgroundFadedColor(color: string) {
         this._backgroundFadedColor = color;
     }
+
+    get goldenColor() {
+        return COLORS.PS_GOLD;
+    }
+
+    get redColor() {
+        return COLORS.EA_PLAY_RED;
+    }
 }
 
 const colorsService = new ColorsService();

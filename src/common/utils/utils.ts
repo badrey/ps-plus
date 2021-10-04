@@ -100,3 +100,18 @@ export function runAfterInteractionsAsync<T>(
         });
     });
 }
+
+export function replaceAll(
+    str: string,
+    searchValue: string | RegExp,
+    replaceValue: string
+) {
+    let prevResult = str;
+    let result = str;
+    do {
+        prevResult = result;
+        result = result.replace(searchValue, replaceValue);
+    } while (prevResult !== result);
+
+    return result;
+}

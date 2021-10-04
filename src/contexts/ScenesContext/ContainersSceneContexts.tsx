@@ -1,6 +1,6 @@
 import * as React from "react";
 import {defaultScenesContext, ScenesContextProvider} from "./ScenesContext";
-import {preloadDataAsync} from "./utils";
+import {preloadDataAsync} from "./ps5/utils";
 import {getPSPlusContainerId} from "../../api";
 import {ChildrenType, ScenesContextType} from "./types";
 
@@ -17,6 +17,7 @@ const SearchContainerSceneContextProvider = React.memo<Props>((props: Props) => 
             getContainerId={getContainerId}
             preloadDataAsync={preloadDataAsync}
             scenesContext={context}
+            storeLocale="en-US"
         />
     );
 });

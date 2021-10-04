@@ -13,30 +13,6 @@ const valkyrieApiBase = "https://store.playstation.com/valkyrie-api";
 
 const storeLocale = "en-US";
 
-export function getLocaleData(locale: string, key: string) {
-    const localeData = storeData[locale];
-    if (localeData) {
-        return localeData[key];
-    }
-    return null;
-}
-
-export function getRegionData(locale: string, key: string) {
-    const localeData = getLocaleData(locale, key);
-    if (!!localeData) {
-        return localeData;
-    }
-
-    const region = getLocaleData(locale, "region");
-    if (region) {
-        const data = regionData[region];
-        if (data) {
-            return data[key];
-        }
-    }
-    return "";
-}
-
 export function getLocalisationLocale(locale: string = storeLocale) {
     return locale;
 }
@@ -50,7 +26,7 @@ export function getValkyrieApiLocale(locale: string = storeLocale) {
 }
 
 export function getPSPlusContainerId() {
-    return getRegionData(storeLocale, "plus-container");
+    return "7952068b-53fb-42fd-8315-1a6e3d21765a";
 }
 
 export function getValkyrieUri(locale: string = storeLocale) {

@@ -87,10 +87,6 @@ export function toTitle(
             name: responseItem?.attributes?.name
                 ? responseItem.attributes.name.trim()
                 : "",
-            secondaryClassification:
-                responseItem.attributes["secondary-classification"] || "",
-            tertiaryClassification:
-                responseItem.attributes["tertiary-classification"] || "",
             topCategory: responseItem.attributes["top-category"] || "",
             releaseDate: responseItem.attributes["release-date"] || "",
             genres: responseItem.attributes.genres || [],
@@ -106,9 +102,6 @@ export function toTitle(
             media,
             providerName: responseItem.attributes["provider-name"],
             starRating: responseItem.attributes["star-rating"],
-            subtitleLanguageCodes:
-                responseItem.attributes["subtitle-language-codes"] || [],
-            voiceLanguageCodes: responseItem.attributes["voice-language-codes"] || [],
         };
     } catch (e) {
         logError(`Error parsing response item id: ${responseItem.id}`);

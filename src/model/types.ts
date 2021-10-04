@@ -1,4 +1,5 @@
 import {LanguageCodesType, MediaLink, TitleFileSize, TitleRating} from "../api";
+import {SkuPrice} from "./ps5/response-types";
 
 export type Facet = {
     readonly name: string;
@@ -10,7 +11,13 @@ export type FacetValue = {
     readonly name: string;
 };
 
-export type MediaData = {screenshots: ReadonlyArray<MediaLink>};
+export type MediaData = {screenshots: Array<MediaLink>};
+
+export type MediaDataPlus = {
+    media: MediaData;
+    preview: string | null;
+    thumbnailUrl: string;
+};
 
 export type Title = {
     readonly contentType: string;
@@ -22,16 +29,14 @@ export type Title = {
     readonly name: string;
     readonly needsDataFetch?: boolean;
     readonly platforms: ReadonlyArray<string>;
-    readonly priceInfo?: ROPriceInfo | null | undefined;
     readonly providerName: string;
+    readonly preview: string | null;
     readonly releaseDate: string;
-    readonly secondaryClassification: string;
+    readonly skuPrices: Array<SkuPrice>;
+    readonly storeLocale: string;
     readonly starRating: TitleRating;
-    readonly subtitleLanguageCodes: ReadonlyArray<LanguageCodesType>;
-    readonly tertiaryClassification: string;
     readonly thumbnailUrl: string;
     readonly topCategory: string;
-    readonly voiceLanguageCodes: ReadonlyArray<LanguageCodesType>;
 };
 
 export type RawPriceInfo = {

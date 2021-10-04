@@ -5,8 +5,9 @@ import {ChildrenType, ScenesContextType} from "./types";
 import {logError} from "../../common/utils";
 
 export type ScenesContextProviderProps = ChildrenType & {
-    getContainerId?: () => string;
-    preloadDataAsync?: () => Promise<void>;
+    storeLocale: string;
+    getContainerId: () => string;
+    preloadDataAsync: () => Promise<boolean>;
     scenesContext: React.Context<ScenesContextType>;
 };
 

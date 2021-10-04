@@ -9,8 +9,11 @@ export const COLORS = {
     LIGHT_LIGHT_GREY: "#f2f4f5",
     LIGHT_SLATE_PURPLE: "#7a79a6",
     PLUS_GOLD: "goldenrod",
+    PS_GOLD: "#DFB620",
+    EA_PLAY_RED: "#dd4948",
     PLUS_GOLD2: "#ffd935",
     BLUE: "#b2cce5",
+    PS_NOW_COLOR: "#5BA1DA",
     BLUE_DISCOUNT: "#6eaae5", // "deepskyblue"
     BLUE_DISCOUNT2: "#5596e6",
     BLUE_DISCOUNT2_FADED: "#5596e697",
