@@ -8,8 +8,8 @@
     "@khanacademy/flow-to-ts": "0.1.7",
     "@react-native-community/eslint-config": "2.0.0",
     "@types/jest": "26.0.15",
-    "@types/react": "16.9.55",
-    "@types/react-native": "0.63.32",
+    "@types/react": "~16.9.35",
+    "@types/react-native": "~0.63.2",
     "eslint": "7.8.1",
     "eslint-config-airbnb": "18.2.0",
     "eslint-config-prettier": "6.11.0",
@@ -25,7 +25,7 @@
     "firebase-tools": "9.10.1",
     "prettier": "2.1.1",
     "sharp-cli": "1.14.1",
-    "typescript": "4.1.1-rc"
+    "typescript": "~4.0.0"
   },
   "main": "./node_modules/expo/AppEntry.js",
   "scripts": {
@@ -46,21 +46,22 @@
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "5.7.6",
     "@react-navigation/stack": "5.9.3",
-    "expo": "^39.0.0",
-    "expo-asset": "~8.2.0",
-    "expo-constants": "~9.2.0",
-    "expo-font": "~8.3.0",
-    "expo-notifications": "~0.7.2",
-    "firebase": "7.9.0",
+    "expo": "^42.0.0",
+    "expo-app-loading": "1.1.2",
+    "expo-asset": "~8.3.3",
+    "expo-constants": "~11.0.2",
+    "expo-font": "~9.2.1",
+    "expo-notifications": "~0.12.3",
+    "firebase": "8.2.3",
     "immutable": "4.0.0-rc.12",
     "moment": "2.29.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.3.tar.gz",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-communications": "2.2.1",
-    "react-native-gesture-handler": "~1.7.0",
-    "react-native-reanimated": "~1.13.0",
-    "react-native-safe-area-context": "3.1.4",
-    "react-native-screens": "~2.10.1"
+    "react-native-gesture-handler": "~1.10.2",
+    "react-native-reanimated": "~2.2.0",
+    "react-native-safe-area-context": "3.2.0",
+    "react-native-screens": "~3.4.0"
   }
 }

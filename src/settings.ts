@@ -11,6 +11,7 @@ const firebaseConfig = {
     authDomain: "ps-plus-e136b.firebaseapp.com",
     databaseURL: "https://ps-plus-e136b-default-rtdb.firebaseio.com",
     projectId: "ps-plus-e136b",
+    storageBucket: "ps-plus-e136b.appspot.com",
     messagingSenderId: "735043970743",
     appId: "1:735043970743:web:07bc0dc499e0c2b7d90f32",
 };

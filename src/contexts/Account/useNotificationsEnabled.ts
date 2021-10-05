@@ -35,7 +35,6 @@ export function useNotificationsEnabled(userId?: string) {
     const [isNotificationsEnabled, setIsNotificationsEnabled] = React.useState(false);
     const [canAskPermissionAgain, setCanAskPermissionAgain] = React.useState(true);
     const [expoToken, setExpoToken] = React.useState<string | null>(null);
-    console.log("expoToken", expoToken);
     React.useEffect(() => {
         extractExpoPushTokenAsync().then(setExpoToken);
     }, []);

@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StatusBar} from "react-native";
-import {AppLoading} from "expo";
+import AppLoading from "expo-app-loading";
 import {ScenesRouter} from "./src/scenes/ScenesRouter/ScenesRouter";
 import {iconsFontLoaderPromise} from "./src/components/icons/Icons";
 import {colorsService} from "./src/services/colors_service";
@@ -17,6 +17,7 @@ function DynamicAppContent() {
     const onFinish = React.useCallback(() => setIsReady(true), []);
     if (!isReady) {
         return (
+            // @ts-ignore
             <AppLoading
                 startAsync={loadAssetsAsync}
                 /* eslint-disable-next-line no-console */
